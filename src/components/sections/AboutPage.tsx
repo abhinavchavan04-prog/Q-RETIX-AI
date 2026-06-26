@@ -30,17 +30,17 @@ const values = [
 
 const founders = [
   {
-    name: "Dr. Arjun Mehta",
+    name: "Aditya",
     role: "Founder & CEO",
-    bio: "Former Principal Scientist at Genentech. PhD in Computational Biology from MIT. Led AI-driven target discovery teams for over a decade.",
-    initials: "AM",
+    bio: "Student of IIT Patna.",
+    initials: "A",
     color: "#2C4D78",
   },
   {
-    name: "Dr. Sarah Chen",
-    role: "Co-Founder & Chief Research Officer",
-    bio: "Previously Head of Clinical Informatics at Pfizer. Stanford MD-PhD. Pioneered real-world evidence platforms used across three continents.",
-    initials: "SC",
+    name: "Anirudh",
+    role: "Co-Founder",
+    bio: "Student of IIT Patna.",
+    initials: "A",
     color: "#98D7C2",
   },
 ];
@@ -52,20 +52,23 @@ const teams = [
     members: 8,
     color: "#2C4D78",
     icon: Dna,
+    designationBase: "UI/UX Designer",
   },
   {
     title: "AI Model Trainers",
     description: "Specialists in molecular graph neural networks, transformer architectures for drug discovery, and multimodal clinical models.",
-    members: 14,
+    members: 6,
     color: "#98D7C2",
     icon: Zap,
+    designationBase: "ML Engineer",
   },
   {
     title: "Data Engineers",
     description: "Building petabyte-scale pipelines for multi-omics, clinical trial, and real-world data ingestion, validation, and federation.",
-    members: 11,
+    members: 5,
     color: "#A8DADC",
     icon: Shield,
+    designationBase: "Data Engineer",
   },
   {
     title: "Marketing Team",
@@ -73,8 +76,18 @@ const teams = [
     members: 6,
     color: "#5A6B82",
     icon: Globe,
+    designationBase: "Marketing Specialist",
   },
 ];
+
+function generateMembers(count: number, designationBase: string, color: string) {
+  return Array.from({ length: count }, (_, i) => ({
+    name: `Person ${i + 1}`,
+    designation: `${designationBase} ${i + 1}`,
+    initials: `P${i + 1}`,
+    color,
+  }));
+}
 
 function fadeUp(delay = 0) {
   return {
@@ -138,10 +151,7 @@ export default function AboutPage() {
 
       <section className="py-24 bg-[#F5F9FB]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <motion.div
-            {...fadeUp(0)}
-            className="text-center mb-16"
-          >
+          <motion.div {...fadeUp(0)} className="text-center mb-16">
             <span className="text-sm font-semibold text-[#2C4D78] uppercase tracking-[0.12em] mb-4 block">
               Principles
             </span>
@@ -157,7 +167,8 @@ export default function AboutPage() {
                 {...fadeUp(i * 0.08)}
                 className="group bg-white rounded-2xl border border-[#D0E0E8]/60 p-7 hover:shadow-xl hover:shadow-[#2C4D78]/3 hover:border-[#D0E0E8] transition-all duration-300"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#E6EEF2] flex items-center justify-center mb-5 group-hover:bg-[#2C4D78] transition-colors duration-300">
+                <div className="w-11 h-11 rounded-xl bg-[#E6EEF2] flex items-center justify-center mb-5 group-hover:bg-[#2C4D78] transition-colors duration-300"
+                >
                   <v.icon className="w-5 h-5 text-[#2C4D78] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="text-[17px] font-semibold text-[#33415C] mb-2">{v.title}</h3>
@@ -170,10 +181,7 @@ export default function AboutPage() {
 
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <motion.div
-            {...fadeUp(0)}
-            className="text-center mb-16"
-          >
+          <motion.div {...fadeUp(0)} className="text-center mb-16">
             <span className="text-sm font-semibold text-[#2C4D78] uppercase tracking-[0.12em] mb-4 block">
               Leadership
             </span>
@@ -214,10 +222,7 @@ export default function AboutPage() {
 
       <section className="py-24 bg-[#F5F9FB]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <motion.div
-            {...fadeUp(0)}
-            className="text-center mb-16"
-          >
+          <motion.div {...fadeUp(0)} className="text-center mb-16">
             <span className="text-sm font-semibold text-[#2C4D78] uppercase tracking-[0.12em] mb-4 block">
               Teams
             </span>
@@ -226,28 +231,54 @@ export default function AboutPage() {
             </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {teams.map((t, i) => (
-              <motion.div
-                key={t.title}
-                {...fadeUp(i * 0.08)}
-                className="group bg-white rounded-2xl border border-[#D0E0E8]/60 p-7 hover:shadow-xl hover:shadow-[#2C4D78]/3 hover:border-[#D0E0E8] transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ backgroundColor: t.color + "15" }}
+          <div className="space-y-20">
+            {teams.map((t, ti) => {
+              const members = generateMembers(t.members, t.designationBase, t.color);
+              return (
+                <div key={t.title}>
+                  <motion.div
+                    {...fadeUp(0)}
+                    className="bg-white rounded-2xl border border-[#D0E0E8]/60 p-7 mb-8 max-w-3xl"
                   >
-                    <t.icon className="w-5 h-5" style={{ color: t.color } as React.CSSProperties} />
+                    <div className="flex items-center gap-4 mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: t.color + "15" }}
+                      >
+                        <t.icon className="w-6 h-6" style={{ color: t.color } as React.CSSProperties} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-[#33415C]">{t.title}</h3>
+                        <p className="text-sm text-[#5A6B82]">{t.members} people · {t.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {members.map((m, mi) => (
+                      <motion.div
+                        key={m.name}
+                        {...fadeUp(mi * 0.04)}
+                        className="group bg-white rounded-2xl border border-[#D0E0E8]/60 p-5 text-center hover:shadow-xl hover:shadow-[#2C4D78]/3 hover:border-[#D0E0E8] transition-all duration-300"
+                      >
+                        <div
+                          className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-semibold text-sm shrink-0"
+                          style={{ backgroundColor: m.color }}
+                        >
+                          {m.initials}
+                        </div>
+                        <h4 className="text-sm font-semibold text-[#33415C] mb-0.5">
+                          {m.name}
+                        </h4>
+                        <p className="text-xs text-[#5A6B82]">
+                          {m.designation}
+                        </p>
+                      </motion.div>
+                    ))}
                   </div>
-                  <span className="text-xs font-semibold text-[#8A9BB0] uppercase tracking-wider">
-                    {t.members} people
-                  </span>
                 </div>
-                <h3 className="text-[17px] font-semibold text-[#33415C] mb-2">{t.title}</h3>
-                <p className="text-sm text-[#5A6B82] leading-relaxed">{t.description}</p>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
