@@ -18,7 +18,7 @@ import {
   Lock,
 } from "lucide-react";
 
-const benefits = [
+  const benefits = [
   { icon: Zap, text: "Early Access" },
   { icon: FileText, text: "Exclusive Research Insights" },
   { icon: Bell, text: "Priority Product Updates" },
@@ -26,12 +26,6 @@ const benefits = [
   { icon: Sparkles, text: "Beta Invitations" },
   { icon: BookOpen, text: "Early Blog Releases" },
   { icon: Mail, text: "Industry Reports" },
-];
-
-const stats = [
-  { icon: Users, title: "Researchers", count: "2,500+", desc: "Active researchers" },
-  { icon: Globe, title: "Global Network", count: "40+", desc: "Countries" },
-  { icon: MessageCircle, title: "Discussions", count: "Daily", desc: "Active support" },
 ];
 
 export default function WaitlistCommunitySection() {
@@ -193,28 +187,9 @@ export default function WaitlistCommunitySection() {
 
               <div className="relative z-10">
                 <h3 className="text-xl font-semibold mb-2">Why join?</h3>
-                <p className="text-sm text-white/70 leading-relaxed mb-6">
+                <p className="text-sm text-white/70 leading-relaxed">
                   Connect with pharmaceutical researchers, scientists, healthcare professionals, and AI innovators shaping the future of drug discovery and clinical research.
                 </p>
-
-                <div className="grid grid-cols-3 gap-4">
-                  {stats.map((stat, i) => (
-                    <motion.div
-                      key={stat.title}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: i * 0.1 }}
-                      className="text-center"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2">
-                        <stat.icon className="w-5 h-5 text-[#98D7C2]" />
-                      </div>
-                      <div className="text-lg font-bold">{stat.count}</div>
-                      <div className="text-xs text-white/60 mt-0.5">{stat.desc}</div>
-                    </motion.div>
-                  ))}
-                </div>
               </div>
             </div>
 

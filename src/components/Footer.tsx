@@ -6,6 +6,9 @@ import Link from "next/link";
 import {
   FlaskConical,
   ArrowUpRight,
+  Mail,
+  MapPin,
+  ExternalLink,
 } from "lucide-react";
 
 const footerLinks = [
@@ -23,26 +26,26 @@ const footerLinks = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Blog", href: "/blog" },
-      { label: "Careers", href: "#careers" },
-      { label: "Press", href: "#press" },
+      { label: "Careers", href: "/careers" },
+      { label: "Press", href: "/press" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Documentation", href: "#docs" },
-      { label: "API Reference", href: "#api" },
-      { label: "Community", href: "#community" },
-      { label: "Support", href: "/contact" },
+      { label: "Documentation", href: "/docs" },
+      { label: "API Reference", href: "/docs/api" },
+      { label: "Community", href: "/community" },
+      { label: "Support", href: "/support" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#privacy" },
-      { label: "Terms of Service", href: "#terms" },
-      { label: "Cookie Policy", href: "#cookies" },
-      { label: "GDPR", href: "#gdpr" },
+      { label: "Privacy Policy", href: "/legal/privacy" },
+      { label: "Terms of Service", href: "/legal/terms" },
+      { label: "Cookie Policy", href: "/legal/cookies" },
+      { label: "GDPR", href: "/legal/gdpr" },
     ],
   },
 ];
@@ -59,23 +62,48 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0f172a] text-white overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2C4D78]/40 to-transparent" />
+    <footer className="relative bg-[#0B1120] text-white overflow-hidden">
+      {/* Top gradient border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2C4D78]/50 to-transparent" />
 
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 lg:gap-8">
-          <div className="col-span-2 md:col-span-4 lg:col-span-2">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #2C4D78 1px, transparent 0)`,
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        {/* Main footer grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-8">
+          {/* Brand column */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 rounded-lg gradient-brand flex items-center justify-center shadow-lg">
+              <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center shadow-lg shadow-[#2C4D78]/30">
                 <FlaskConical className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[15px] font-bold text-white tracking-tight">
+              <span className="text-[16px] font-bold text-white tracking-tight">
                 Q-RETIX AI
               </span>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm">
+            <p className="text-[13px] text-slate-400 leading-relaxed mb-6 max-w-sm">
               AI-Powered Pharmaceutical Intelligence for Research, Drug Discovery, and Clinical Analysis.
             </p>
+
+            {/* Contact info */}
+            <div className="space-y-2.5 mb-6">
+              <div className="flex items-center gap-2 text-[13px] text-slate-400">
+                <Mail className="w-3.5 h-3.5 text-[#98D7C2]" />
+                hello@qretix.ai
+              </div>
+              <div className="flex items-center gap-2 text-[13px] text-slate-400">
+                <MapPin className="w-3.5 h-3.5 text-[#98D7C2]" />
+                San Francisco, CA
+              </div>
+            </div>
+
+            {/* Social links */}
             <div className="flex flex-wrap items-center gap-2">
               {socialLinks.map((social) => (
                 <a
@@ -84,7 +112,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all text-[10px] font-bold"
+                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-[#98D7C2]/50 hover:bg-[#98D7C2]/10 transition-all text-[10px] font-bold"
                   title={social.label}
                 >
                   {social.initial}
@@ -93,9 +121,10 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Link columns */}
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h4 className="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-4">
+              <h4 className="text-[11px] font-semibold text-slate-200 uppercase tracking-[0.15em] mb-5">
                 {group.title}
               </h4>
               <ul className="space-y-3">
@@ -103,7 +132,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white transition-colors"
+                      className="group inline-flex items-center gap-1 text-[13px] text-slate-400 hover:text-white transition-colors"
                     >
                       {link.label}
                       <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
@@ -115,21 +144,39 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-500">
+        {/* Divider */}
+        <div className="border-t border-white/5 mt-16 mb-8" />
+
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[11px] text-slate-500">
             © {new Date().getFullYear()} Q-RETIX AI. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#privacy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+            <Link href="/legal/privacy" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
               Privacy
             </Link>
-            <Link href="#terms" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+            <Link href="/legal/terms" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
               Terms
             </Link>
-            <Link href="#cookies" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+            <Link href="/legal/cookies" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
               Cookies
             </Link>
+            <Link href="/legal/gdpr" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
+              GDPR
+            </Link>
           </div>
+        </div>
+
+        {/* Trust badges */}
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-8 pt-6 border-t border-white/5">
+          <span className="text-[10px] text-slate-500 uppercase tracking-wider">SOC 2 Compliant</span>
+          <span className="w-1 h-1 rounded-full bg-slate-700" />
+          <span className="text-[10px] text-slate-500 uppercase tracking-wider">GDPR Ready</span>
+          <span className="w-1 h-1 rounded-full bg-slate-700" />
+          <span className="text-[10px] text-slate-500 uppercase tracking-wider">HIPAA Compatible</span>
+          <span className="w-1 h-1 rounded-full bg-slate-700" />
+          <span className="text-[10px] text-slate-500 uppercase tracking-wider">ISO 27001</span>
         </div>
       </div>
     </footer>
