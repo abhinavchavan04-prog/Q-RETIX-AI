@@ -9,47 +9,14 @@ import Link from "next/link";
 const blogs = [
   {
     id: 1,
-    title: "Generative AI for Molecule Design",
+    title: "Q-RETIX.AI: Unlocking the \"Undruggable\" AIM2 Inflammasome",
     description:
-      "Exploring how generative models like diffusion models and transformers are revolutionizing de novo drug design.",
-    category: "Healthcare Intelligence",
-    readTime: "8 min read",
-    date: "Dec 15, 2025",
-    author: "Dr. Sarah Chen",
-    image: "/images/blog/blog-1.jpg",
-  },
-  {
-    id: 2,
-    title: "Optimizing Clinical Trials with Machine Learning",
-    description:
-      "Machine learning approaches to patient stratification, adaptive trial design, and real-world evidence integration.",
-    category: "Research Insights",
-    readTime: "12 min read",
-    date: "Dec 10, 2025",
-    author: "Dr. James Wilson",
-    image: "/images/blog/blog-2.jpg",
-  },
-  {
-    id: 3,
-    title: "Precision Medicine Breakthroughs Powered by AI",
-    description:
-      "From genomic biomarkers to personalized dosing algorithms, AI is enabling truly individualized therapies.",
-    category: "AI Research",
-    readTime: "10 min read",
-    date: "Dec 5, 2025",
-    author: "Dr. Maria Rodriguez",
-    image: "/images/blog/blog-3.jpg",
-  },
-  {
-    id: 4,
-    title: "Pharma Supply Chain Resilience with AI",
-    description:
-      "Predictive analytics and digital twins are helping pharmaceutical companies build resilient supply chains.",
-    category: "Product Deep Dive",
+      "How Structural AI Bypassed the Electrostatic Charge Trap to Reignite a Dormant Therapeutic Target. A deep dive into the AI-driven discovery of a first-in-class allosteric molecular wedge.",
+    category: "Research",
     readTime: "15 min read",
-    date: "Nov 28, 2025",
-    author: "Dr. Alan Park",
-    image: "/images/blog/blog-4.jpg",
+    date: "July 4, 2026",
+    author: "Q-RETIX Research Team",
+    image: "/images/blog/cover1.jpg",
   },
 ];
 
