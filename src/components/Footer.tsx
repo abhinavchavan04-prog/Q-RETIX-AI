@@ -1,141 +1,118 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  FlaskConical,
-  ArrowUpRight,
-  Mail,
-  MapPin,
-} from "lucide-react";
-import SocialIcon from "./SocialIcon";
 
 const footerLinks = [
   {
-    title: "Product",
+    title: "Conn",
+    isBrand: true,
     links: [
-      { label: "Platform", href: "#platform" },
-      { label: "Solutions", href: "#solutions" },
-      { label: "Research Hub", href: "#research" },
-      { label: "Pricing", href: "#pricing" },
+      { label: "About", href: "/about" },
+      { label: "Features", href: "/features" },
+      { label: "Works", href: "/works" },
+      { label: "Career", href: "/career" },
     ],
   },
   {
-    title: "Company",
+    title: "Help",
     links: [
-      { label: "About Us", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
+      { label: "Customer Support", href: "/support" },
+      { label: "Delivery Details", href: "/delivery" },
+      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Privacy Policy", href: "/privacy" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Documentation", href: "/docs" },
-      { label: "API Reference", href: "/docs/api" },
-      { label: "Community", href: "/community" },
-      { label: "Support", href: "/support" },
+      { label: "Free eBooks", href: "/ebooks" },
+      { label: "Development Tutorial", href: "/tutorial" },
+      { label: "How to - Blog", href: "/blog" },
+      { label: "Youtube Playlist", href: "/youtube" },
     ],
   },
   {
-    title: "Legal",
+    title: "Extra Links",
     links: [
-      { label: "Privacy Policy", href: "/legal/privacy" },
-      { label: "Terms of Service", href: "/legal/terms" },
-      { label: "Cookie Policy", href: "/legal/cookies" },
-      { label: "GDPR", href: "/legal/gdpr" },
+      { label: "Customer Support", href: "/support" },
+      { label: "Delivery Details", href: "/delivery" },
+      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Privacy Policy", href: "/privacy" },
     ],
   },
 ];
 
-const socialLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/pharmaa-ai/", icon: "linkedin" as const },
-  { label: "Instagram", href: "https://www.instagram.com/qretix_ai_official/", icon: "instagram" as const },
-  { label: "X", href: "https://x.com/QRETIXAIorg", icon: "x" as const },
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61590886726981", icon: "facebook" as const },
-  { label: "Substack", href: "https://substack.com/@qretixai", icon: "substack" as const },
-  { label: "Medium", href: "https://medium.com/@qretix.ai2405", icon: "medium" as const },
-  { label: "Reddit", href: "https://www.reddit.com/user/Q-RETIX_AI_official/", icon: "reddit" as const },
+const bottomLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Support", href: "/support" },
+];
+
+const socialIcons = [
+  {
+    label: "Twitter",
+    href: "#",
+    svg: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Facebook",
+    href: "#",
+    svg: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Instagram",
+    href: "#",
+    svg: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+      </svg>
+    ),
+  },
+  {
+    label: "GitHub",
+    href: "#",
+    svg: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0B1120] text-white overflow-hidden">
-      {/* Top gradient border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2C4D78]/50 to-transparent" />
-
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #2C4D78 1px, transparent 0)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+    <footer className="bg-[#C4BEB5] text-black">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-12 lg:px-20 pt-20 pb-10">
         {/* Main footer grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-8">
-          {/* Brand column */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center shadow-lg shadow-[#2C4D78]/30">
-                <FlaskConical className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-[16px] font-bold text-white tracking-tight">
-                Q-RETIX AI
-              </span>
-            </Link>
-            <p className="text-[13px] text-slate-400 leading-relaxed mb-6 max-w-sm">
-              AI-Powered Pharmaceutical Intelligence for Research, Drug Discovery, and Clinical Analysis.
-            </p>
-
-            {/* Contact info */}
-            <div className="space-y-2.5 mb-6">
-              <div className="flex items-center gap-2 text-[13px] text-slate-400">
-                <Mail className="w-3.5 h-3.5 text-[#98D7C2]" />
-                hello@qretix.ai
-              </div>
-              <div className="flex items-center gap-2 text-[13px] text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-[#98D7C2]" />
-                San Francisco, CA
-              </div>
-            </div>
-
-            {/* Social links with real icons */}
-            <div className="flex flex-wrap items-center gap-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-[#98D7C2]/50 hover:bg-[#98D7C2]/10 transition-all"
-                  title={social.label}
-                >
-                  <SocialIcon platform={social.icon} size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h4 className="text-[11px] font-semibold text-slate-200 uppercase tracking-[0.15em] mb-5">
+              <h4
+                className={`text-black mb-8 ${
+                  group.isBrand
+                    ? "text-[32px] font-bold leading-tight"
+                    : "text-lg font-semibold"
+                }`}
+              >
                 {group.title}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-5">
                 {group.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1 text-[13px] text-slate-400 hover:text-white transition-colors"
+                      className="text-[15px] text-black hover:opacity-70 transition-opacity"
                     >
                       {link.label}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                     </Link>
                   </li>
                 ))}
@@ -144,39 +121,40 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/5 mt-16 mb-8" />
-
         {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[11px] text-slate-500">
-            © {new Date().getFullYear()} Q-RETIX AI. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link href="/legal/privacy" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
-              Privacy
-            </Link>
-            <Link href="/legal/terms" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
-              Terms
-            </Link>
-            <Link href="/legal/cookies" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
-              Cookies
-            </Link>
-            <Link href="/legal/gdpr" className="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
-              GDPR
-            </Link>
-          </div>
-        </div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-24 pt-8 border-t border-black/10">
+          <div className="flex items-center gap-8">
+            {/* Social icons */}
+            <div className="flex items-center gap-5">
+              {socialIcons.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  {social.svg}
+                </a>
+              ))}
+            </div>
 
-        {/* Trust badges */}
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-8 pt-6 border-t border-white/5">
-          <span className="text-[10px] text-slate-500 uppercase tracking-wider">SOC 2 Compliant</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span className="text-[10px] text-slate-500 uppercase tracking-wider">GDPR Ready</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span className="text-[10px] text-slate-500 uppercase tracking-wider">HIPAA Compatible</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span className="text-[10px] text-slate-500 uppercase tracking-wider">ISO 27001</span>
+            {/* Bottom links */}
+            <div className="flex items-center gap-8">
+              {bottomLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-[15px] text-black hover:opacity-70 transition-opacity"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-[15px] text-black">
+            © Copyright 2026, All Rights Reserved
+          </p>
         </div>
       </div>
     </footer>
